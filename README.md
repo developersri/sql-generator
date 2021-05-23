@@ -16,3 +16,4 @@ Run `npm install` from the project directory.
 ## Running the command line tool
 
 Run `node main.js --data /path/to/input.json` to supply the inputs and JSON and the equivalent SQL is generated as command line output.
+Run `source run-samples.sh` to run generate SQL for pre-defined JSON inputs
