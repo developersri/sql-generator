@@ -1,0 +1,137 @@
+{
+    "projections": [
+        {
+            "type": "column",
+            "column": "name"
+        },
+        {
+            "type": "column",
+            "column": "age"
+        }
+    ],
+    "sources": [
+        {
+            "type": "table",
+            "table": "employees"
+        }
+    ],
+    "filter": {
+        "type": "operation",
+        "subType": "binary",
+        "operator": {
+            "value": "AND"
+        },
+        "leftOperand": {
+            "type": "operation",
+            "subType": "binary",
+            "operator": {
+                "value": "OR"
+            },
+            "leftOperand": {
+                "type": "operation",
+                "subType": "binary",
+                "operator": {
+                    "value": ">="
+                },
+                "leftOperand": {
+                    "type": "column",
+                    "column": "age"
+                },
+                "rightOperand": {
+                    "type": "operation",
+                    "subType": "unary",
+                    "operator": {
+                        "value": "+"
+                    },
+                    "rightOperand": {
+                        "type": "literal",
+                        "dataType": "numeric",
+                        "value": "18"
+                    }
+                }
+            },
+            "rightOperand": {
+                "type": "operation",
+                "subType": "binary",
+                "operator": {
+                    "value": "ilike"
+                },
+                "leftOperand": {
+                    "type": "column",
+                    "column": "name"
+                },
+                "rightOperand": {
+                    "type": "literal",
+                    "dataType": "string",
+                    "value": "Sha%"
+                }
+            }
+        },
+        "rightOperand": {
+            "type": "operation",
+            "subType": "binary",
+            "operator": {
+                "value": "OR"
+            },
+            "leftOperand": {
+                "type": "operation",
+                "subType": "binary",
+                "operator": {
+                    "value": "IN"
+                },
+                "leftOperand": {
+                    "type": "column",
+                    "column": "dept_id"
+                },
+                "rightOperand": {
+                    "type": "literal",
+                    "dataType": "list",
+                    "value": "(1, 4, 7)"
+                }
+            },
+            "rightOperand": {
+                "type": "operation",
+                "subType": "binary",
+                "operator": {
+                    "value": "IN"
+                },
+                "leftOperand": {
+                    "type": "column",
+                    "column": "dept_id"
+                },
+                "rightOperand": {
+                    "type": "operation",
+                    "subType": "subquery",
+                    "projections": [
+                        {
+                            "type": "column",
+                            "column": "id"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "type": "table",
+                            "table": "departments"
+                        }
+                    ],
+                    "filter": {
+                        "type": "operation",
+                        "subType": "binary",
+                        "operator": {
+                            "value": "="
+                        },
+                        "leftOperand": {
+                            "type": "column",
+                            "column": "work_from_home"
+                        },
+                        "rightOperand": {
+                            "type": "literal",
+                            "dataType": "boolean",
+                            "value": "true"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

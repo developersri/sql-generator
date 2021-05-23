@@ -1,0 +1,87 @@
+{
+    "projections": [
+        {
+            "type": "column",
+            "column": "name",
+            "table": "emp",
+            "alias": "empName"
+        },
+        {
+            "type": "column",
+            "column": "name",
+            "table": "dpt",
+            "alias": "departmentName"
+        }
+    ],
+    "sources": [
+        {
+            "type": "table",
+            "table": "employees",
+            "alias": "emp"
+        },
+        {
+            "type": "join",
+            "subType": "left",
+            "source": {
+                "type": "subquery",
+                "sources": [
+                    {
+                        "type": "table",
+                        "table": "departments"
+                    }
+                ],
+                "filter": {
+                    "type": "operation",
+                    "subType": "binary",
+                    "operator": {
+                        "value": "="
+                    },
+                    "leftOperand": {
+                        "type": "column",
+                        "column": "work_from_home"
+                    },
+                    "rightOperand": {
+                        "type": "literal",
+                        "dataType": "boolean",
+                        "value": "true"
+                    }
+                },
+                "alias": "dpt"
+            },
+            "filter": {
+                "type": "operation",
+                "subType": "binary",
+                "operator": {
+                    "value": "="
+                },
+                "leftOperand": {
+                    "type": "column",
+                    "column": "dept_id",
+                    "table": "emp"
+                },
+                "rightOperand": {
+                    "type": "column",
+                    "column": "id",
+                    "table": "dpt"
+                }
+            }
+        }
+    ],
+    "filter": {
+        "type": "operation",
+        "subType": "binary",
+        "operator": {
+            "value": "="
+        },
+        "leftOperand": {
+            "type": "column",
+            "column": "type",
+            "table": "emp"
+        },
+        "rightOperand": {
+            "type": "literal",
+            "dataType": "string",
+            "value": "permanent"
+        }
+    }
+}

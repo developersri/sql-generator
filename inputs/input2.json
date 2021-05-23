@@ -1,0 +1,40 @@
+{
+    "projections": [
+        {
+            "type": "column",
+            "column": "name",
+            "table": "emp",
+            "alias": "empName"
+        },
+        {
+            "type": "column",
+            "column": "age",
+            "table": "emp",
+            "alias": "empAge"
+        }
+    ],
+    "sources": [
+        {
+            "type": "table",
+            "table": "employees",
+            "alias": "emp"
+        }
+    ],
+    "filter": {
+        "type": "operation",
+        "subType": "binary",
+        "operator": {
+            "value": ">="
+        },
+        "leftOperand": {
+            "type": "column",
+            "column": "age",
+            "table": "emp"
+        },
+        "rightOperand": {
+            "type": "literal",
+            "dataType": "numeric",
+            "value": "18"
+        }
+    }
+}

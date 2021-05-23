@@ -1,0 +1,25 @@
+{
+  "name": "sql-generator",
+  "version": "1.0.0",
+  "description": "library to parse structured JSON input and generate equivalent SQL",
+  "main": "main.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/developersri/sql-generator.git"
+  },
+  "author": "Shashank Srivastava",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/developersri/sql-generator/issues"
+  },
+  "homepage": "https://github.com/developersri/sql-generator#readme",
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
+}

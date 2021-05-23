@@ -1,0 +1,9 @@
+{
+    "sources": [
+        {
+            "type": "table",
+            "table": "employees",
+            "alias": "emp"
+        }
+    ]
+}
